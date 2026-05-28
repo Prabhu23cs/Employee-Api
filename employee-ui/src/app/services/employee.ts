@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmployeeService {
 
-  apiUrl = 'http://localhost:5021/api/employee';
+  apiUrl = 'https://prabhu-ems-api.azurewebsites.net/api/employee';
 
   constructor(private http: HttpClient) { }
 
