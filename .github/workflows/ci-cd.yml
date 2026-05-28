@@ -1,0 +1,36 @@
+name: Full Stack CI/CD
+
+on:
+    push:
+        branches:
+            - master
+jobs:
+    backend-build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./Employee-Api
+        
+        steps:
+        - uses: actions/checkout@v5
+
+        - uses: actions/setup-dotnet@v5
+          with:
+              dotnet-version: '8.0.x'
+        - run: dotnet restore
+        - run: dotnet build --configuration Release
+
+    frontend-build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./employee-ui
+
+        steps:
+        - uses: actions/checkout@v5
+
+        - uses: actions/setup-node@v5
+          with:
+              node-version: '22'
+        - run: npm install
+        - run: npm run build
